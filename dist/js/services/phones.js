@@ -1,11 +1,4 @@
-"use strict";
-import SideBar from "./components/SideBar/sidebar.js"; // Side Bar.
-import DropDown from "./components/SideBar/drop-down.js"; // Drop Down.
-import PhonesList from "./components/Phones/phones-list.js"; // Phones List.
-import Header from "./components/Header/header.js" // Header.
-// Imports.
-
-const phonesObj = [
+let phones = [
   {
     age: 0,
     id: "motorola-xoom-with-wi-fi",
@@ -176,28 +169,4 @@ const phonesObj = [
   }
 ];
 
-let header = new Header({
-  element: document.querySelector('.header'),
-}); 
-let sideBar = new SideBar({
-  element: document.querySelector(".side-bar")
-}); // Create my side bar.
-
-let dropDown = new DropDown({
-  element: document.querySelector(".drop-down"),
-  typesOfSorting: [
-    {
-      type: "name",
-      value: "Alphabetical"
-    },
-    {
-      type: "age",
-      value: "Newest"
-    }
-  ]
-}); // Create my drop down.
-
-let phonesList = new PhonesList({
-  element: document.querySelector(".phones"),
-  phones: phonesObj,
-});
+export default phones;

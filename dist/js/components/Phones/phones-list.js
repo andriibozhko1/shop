@@ -5,7 +5,7 @@ export default class PhonesList {
     this.element = element;
     this.phonesList = phones;
     this.selectedPhones;
-    
+
     this.render();
     this.addEvents();
   }
@@ -33,9 +33,9 @@ export default class PhonesList {
   addEvents() {
     let productId;
     this.element.addEventListener("click", e => {
-      if(e.target.classList.contains('product__to-order')) {
+      if (e.target.classList.contains("product__to-order")) {
         console.log(1);
-      } else if(e.target.closest(".product")) {
+      } else if (e.target.closest(".product")) {
         productId = e.target.closest(".product").dataset.productId;
 
         this.phonesList.map(phone => {
