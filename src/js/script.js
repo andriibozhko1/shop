@@ -1,8 +1,8 @@
 "use strict";
-import SideBar from "./components/SideBar/sidebar.js"; // Side Bar.
-import DropDown from "./components/SideBar/drop-down.js"; // Drop Down.
-import PhonesList from "./components/Phones/phones-list.js"; // Phones List.
-import Header from "./components/Header/header.js" // Header.
+import SideBar from "../js/components/SideBar/sidebar.js"; // Side Bar.
+import DropDown from "../js/components/SideBar/drop-down.js"; // Drop Down.
+import PhonesList from "../js/components/Phones/phones-list.js"; // Phones List.
+import Header from "../js/components/Header/header.js" // Header.
 // Imports.
 
 const phonesObj = [
@@ -201,3 +201,5 @@ let phonesList = new PhonesList({
   element: document.querySelector(".phones"),
   phones: phonesObj,
 });
+
+let
