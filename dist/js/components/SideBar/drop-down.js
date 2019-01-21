@@ -1,10 +1,11 @@
-"use strict";
+import PhoneList from "../Phones/phones-list.js"
+
 export default class DropDown {
-  constructor({ element, typesOfSorting }) {
+  constructor({ element, typesOfSorting, phones }) {
     this.element = element;
     this.typesOfSorting = typesOfSorting;
-    this.sortBy;
-
+    this.phones = phones;
+    
     this.render();
     this.addEvents();
   }
@@ -27,9 +28,8 @@ export default class DropDown {
       if(e.target.closest('.drop-down__title')) {
         this.element.classList.toggle('hide-sort');
       }
-      if(e.target.dataset.filterBy) {
-        this.sortBy = e.target.dataset.filterBy;
-        console.log(this.sortBy);
+      if(e.target.dataset.filterBy) {           
+        this.sorting(e.target.dataset.filterBy);
       }            
     })
     document.body.addEventListener('click', (e) => {
@@ -37,5 +37,12 @@ export default class DropDown {
         this.element.classList.add('hide-sort');
       }
     });
+  }
+  sorting(phones) {
+    let sortedPhonesList = this.phones.sort((a,b) => a[phones] < b[phones] ? -1 : 1);
+    let sort = new PhoneList({
+      element: document.querySelector('.phones'),
+      phones: sortedPhonesList,
+    })
   }
 }

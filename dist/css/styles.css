@@ -221,7 +221,7 @@ $generalColor: #122538;
     cursor: pointer;    
 
     &:hover {      
-      background: rgb(141, 241, 141);
+      background: rgb(101, 199, 101);
     }
   }
 }
