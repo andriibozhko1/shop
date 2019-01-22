@@ -35,6 +35,11 @@
     background-size: 100%;
     height: 100px;
     width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    color: #fff;
+    font-family: sans-serif;
     cursor: pointer; }
 
 .search-icon {
@@ -52,7 +57,9 @@
   background: #f5f5f5;
   box-shadow: 3px 0px 20px gray;
   position: relative;
-  transition: 0.5s; }
+  transition: 0.5s;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px; }
 
 .side-bar--hide {
   width: 0%; }
@@ -251,3 +258,94 @@
   margin-top: 5px;
   text-align: center;
   cursor: pointer; }
+
+.cart-menu__overflow {
+  background: #000;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  opacity: .6; }
+
+.cart-menu__cart {
+  background: #fff;
+  box-shadow: 0px 0px 15px #122538;
+  border-radius: 5px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 90%;
+  overflow: auto;
+  z-index: 2;
+  animation: show .5s ease; }
+
+.cart-menu__title {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  font-size: 50px;
+  font-weight: 100;
+  border-bottom: 1px solid silver;
+  color: #122538;
+  padding-left: 25px;
+  padding: 20px; }
+
+.cart-menu__remove-item {
+  width: 7%; }
+
+.cart-menu__remove-item-icons {
+  width: 60%;
+  float: right;
+  margin-left: 10vh;
+  cursor: pointer; }
+
+.cart-menu__item {
+  border-bottom: 1px solid silver;
+  height: 10vh;
+  display: flex;
+  padding: 5px;
+  margin-bottom: 15px; }
+
+.cart-menu__item-img-block {
+  border-bottom: 2px solid red;
+  width: 10%; }
+
+.cart-menu__item-img {
+  height: 100%;
+  width: 100%; }
+
+.cart-menu__item-title {
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 100;
+  display: flex;
+  align-items: flex-end;
+  margin-left: 3%;
+  padding-left: 1%;
+  border-left: 1px solid silver;
+  color: #3E77AC;
+  cursor: pointer; }
+
+.cart-menu__quantity {
+  border: 1px solid silver;
+  border-radius: 10px;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  font-size: 22px;
+  color: gray;
+  align-self: center;
+  position: absolute;
+  right: 10%; }
+
+@keyframes show {
+  0% {
+    top: 150%;
+    height: 0;
+    width: 0; }
+  100% {
+    top: 50%; } }

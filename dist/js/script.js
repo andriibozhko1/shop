@@ -5,6 +5,7 @@ import PhonesList from "./components/Phones/phones-list.js"; // Phones List.
 import Header from "./components/Header/header.js"; // Header.
 import phones from "./services/phones.js"; // Phones OBJ.
 import FilterField from "./components/Header/filter-field.js"; // Filter Field.
+import Cart from './components/Cart/cart.js' // Cart.
 // Imports.
 
 let header = new Header({
@@ -38,3 +39,8 @@ let filterField = new FilterField({
   element: document.querySelector(".header__search-field"),
   phones: phones
 });
+let cart = new Cart({
+  element: document.querySelector('.header__cart'),
+  cartMenu: document.querySelector('.cart-menu'),
+  phones: [],
+})
