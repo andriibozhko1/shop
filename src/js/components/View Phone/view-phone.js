@@ -27,7 +27,7 @@ export default class ViewPhone {
             <div class="view-phone__snippet">
             ${this.phone.snippet}
             </div>
-            <div class="view-phone__to-order">
+            <div class="view-phone__to-order" data-to-order-id="${this.phone.id}">
               Buy
             </div>
          </div>

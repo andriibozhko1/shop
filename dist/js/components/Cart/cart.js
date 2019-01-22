@@ -1,15 +1,15 @@
 export default class Cart {
-  constructor({element, phones, cartMenu}) {
+  constructor({element, phonesList}) {
     this.element = element;
-    this.phones = phones;
-    this.cartMenu = cartMenu;
-    this.phones.map(e => e.quantity = 1);     
-    
-    this.render();
+    this.phonesList = phonesList;
+    this.phones = [];    
+
+    this.phonesList.map(e => e.quantity = 1);
+
     this.addEvents();    
   }
-  render() {
-   this.phones = this.phones.filter((a,b) => {
+  render() {    
+    this.phones = this.phones.filter((a,b) => {
       if(this.phones.indexOf(a) == b) {
         return true;
       } else {
@@ -19,7 +19,7 @@ export default class Cart {
       
     let phones = this.phones.map((phone) => {
       return `
-         <div class="cart-menu__item">
+         <div class="cart-menu__item" data-product-id="${phone.id}">
             <div class="cart-menu__remove-item">
               <img src="img/icons/error.svg" alt="cross" class="cart-menu__remove-item-icons">
             </div>
@@ -35,26 +35,34 @@ export default class Cart {
         </div>
       `
     }).join("");    
-    this.cartMenu.innerHTML = `
-        <div class="cart-menu__overflow">
-        </div>
-        <div class="cart-menu__cart">
-          <div class="cart-menu__title">
-              Cart
-          </div>
-          <div class="cart-menu__list">
-          ${phones}
-          </div>
-        </div>
-    `
+    this.element.innerHTML = phones;
   }
-  addEvents() {   
-    this.element.addEventListener('click', (e) => {
-      this.cartMenu.classList.remove('hide');
+  addEvents() {
+    document.body.addEventListener('click', (e) => {
+      if(e.target.dataset.toOrderId) {        
+        this.phonesList.map((phone) => {
+          if(phone.id === e.target.dataset.toOrderId) {
+            this.phones.push(phone);
+          }
+        })
+        this.render();
+        this.element.closest('.cart-menu').classList.remove('hide');
+      }
     })
-    this.cartMenu.addEventListener('click', (e) => {
-      if(e.target.classList.contains('cart-menu__overflow')) {
-        this.cartMenu.classList.add('hide');
+    this.element.addEventListener('click', (e) => {
+      if(e.target.closest('.cart-menu__remove-item')) {
+        let item = e.target.closest('.cart-menu__item');        
+        this.phones.map((phone) => {
+          if(phone.id === item.dataset.productId) {
+            if(phone.quantity > 1) {
+              phone.quantity--;                      
+              this.render();
+            } else {                            
+              this.phones.splice(this.phones.indexOf(phone),1);              
+              this.render();
+            }     
+          }
+        })
       }
     })
   }

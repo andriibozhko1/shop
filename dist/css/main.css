@@ -30,7 +30,7 @@
     font-weight: 100;
     color: #4d4b4b;
     outline: none; }
-  .header__cart {
+  .header__cart-btn {
     background: url("../img/basket-logo.png") 100%;
     background-size: 100%;
     height: 100px;

@@ -6,7 +6,7 @@ export default class Header {
   render() {
     this.element.innerHTML = `
       <div class="header__logo">
-          <a href="#home" class="header__logo-link"></a>
+          <a href="index.html" class="header__logo-link"></a>
       </div>
       <div class="header__search-field">
         <label class="search-icon">
@@ -14,7 +14,7 @@ export default class Header {
             <input type="text" class="header__input"/>
         </label>
       </div>
-      <div class="header__cart"></div>
+      <div class="header__cart-btn"></div>
     `
   }
 
