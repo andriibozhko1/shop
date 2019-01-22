@@ -13,7 +13,7 @@ export default class DropDown {
   render() {
     this.element.innerHTML = `    
         <div class="drop-down__title" data-dropdown-show="hide">
-          <span>Sort By:</span><img class="down-arrow-icon" src="../img/icons/down-arrow.svg">
+          <span>Sort By:</span><img class="down-arrow-icon" src="img/icons/down-arrow.svg">
         </div>
         <div class="drop-down__items">
           ${this.typesOfSorting.map(e=> `<div class="drop-down__item" data-filter-by="${e.type}">${e.value}</div>`).join('')}

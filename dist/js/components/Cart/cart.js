@@ -16,12 +16,12 @@ export default class Cart {
         a.quantity++;
       }
     });
-    console.log(this.element)    
+      
     let phones = this.phones.map((phone) => {
       return `
          <div class="cart-menu__item">
             <div class="cart-menu__remove-item">
-              <img src="../../img/icons/error.svg" alt="cross" class="cart-menu__remove-item-icons">
+              <img src="img/icons/error.svg" alt="cross" class="cart-menu__remove-item-icons">
             </div>
             <div class="cart-menu__item-img-block">
               <img src="${phone.imageUrl}" alt="${phone.id}" class="cart-menu__item-img">
