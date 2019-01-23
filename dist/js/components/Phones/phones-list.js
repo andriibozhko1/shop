@@ -39,11 +39,11 @@ export default class PhonesList {
       if (e.target.closest(".product") && !e.target.dataset.toOrderId) {
         productId = e.target.closest(".product").dataset.productId;
 
-        this.phonesList.map(phone => {
+        this.phonesList.find(phone => {
           if (phone.id === productId) {
             this.element.classList.add("hide");
 
-            let viewPhonePage = new ViewPhone({
+            new ViewPhone({
               element: document.querySelector(".view-phone"),
               phone: phone,
               phoneList: this.element

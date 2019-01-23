@@ -35,8 +35,10 @@ export default class Cart {
         </div>
       `
     }).join("");    
+
     this.element.innerHTML = phones;
   }
+
   addEvents() {
     document.body.addEventListener('click', (e) => {
       if(e.target.dataset.toOrderId) {        
@@ -49,18 +51,19 @@ export default class Cart {
         this.element.closest('.cart-menu').classList.remove('hide');
       }
     })
+    
     this.element.addEventListener('click', (e) => {
       if(e.target.closest('.cart-menu__remove-item')) {
-        let item = e.target.closest('.cart-menu__item');        
+        let item = e.target.closest('.cart-menu__item');
+
         this.phones.map((phone) => {
           if(phone.id === item.dataset.productId) {
             if(phone.quantity > 1) {
               phone.quantity--;                      
-              this.render();
             } else {                            
-              this.phones.splice(this.phones.indexOf(phone),1);              
-              this.render();
-            }     
+              this.phones.splice(this.phones.indexOf(phone),1);                            
+            }            
+            this.render();
           }
         })
       }

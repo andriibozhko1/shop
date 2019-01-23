@@ -1,7 +1,7 @@
 export default class Header {
-  constructor({element}) {
+  constructor({ element }) {
     this.element = element;
-    this.render();    
+    this.render();
   }
   render() {
     this.element.innerHTML = `
@@ -15,7 +15,6 @@ export default class Header {
         </label>
       </div>
       <div class="header__cart-btn"></div>
-    `
+    `;
   }
-
 }

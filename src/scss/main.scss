@@ -1,19 +1,18 @@
 $generalColor: #122538;
 
-.header {
-  border: 1px solid black;
-  background: $generalColor;
-  height: 100px;
+.header {  
   display: flex;
   justify-content: space-around;
+  background: $generalColor;
+  height: 100px;
 
   &__logo {
-    border-radius: 100%;
-    background: url("../img/header_logo.jpg") 100%;
-    background-size: 100%;
-    margin-top: 5px;
     height: 90px;
     width: 90px;
+    margin-top: 5px;
+    border-radius: 100%;
+    background: url("../img/header_logo.jpg") 100%;
+    background-size: 100%;    
   }
 
   &__logo-link {
@@ -33,11 +32,11 @@ $generalColor: #122538;
   &__input {
     border: 0;
     height: 100%;
+    color: #4d4b4b;    
     margin-left: 15px;
     font-size: 28px;
     font-family: sans-serif;
-    font-weight: 100;
-    color: #4d4b4b;
+    font-weight: 100; 
     outline: none;
   }
 
@@ -69,10 +68,10 @@ $generalColor: #122538;
   width: 18%;
   background: #f5f5f5;
   box-shadow: 3px 0px 20px gray;
-  position: relative;
-  transition: 0.5s;
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
+  position: relative;
+  transition: 0.5s;
 }
 .side-bar--hide {
   width: 0%;
@@ -81,9 +80,9 @@ $generalColor: #122538;
   display: none;
 }
 .drop-down {
-  max-width: 200px;
-  margin: 20% auto;
   background: #f5f5f5;
+  max-width: 200px;
+  margin: 20% auto;  
   text-align: center;
   cursor: pointer;
 
@@ -156,15 +155,15 @@ $generalColor: #122538;
 }
 
 .product {
+  display: inline-block;
+  background: #f5f5f5;
+  color: $generalColor;  
   box-shadow: 0px 0px 5px silver;  
   border-radius: 10px;
   width: 300px;
   min-height: 420px;
   margin: 5% 1% 0 1%;  
-  padding: 20px;
-  display: inline-block;
-  background: #f5f5f5;
-  color: $generalColor;  
+  padding: 20px;  
   cursor: pointer;
   transition: .3s;
 
@@ -185,32 +184,31 @@ $generalColor: #122538;
     width: 100%;
     height: 100%;    
   }
-  &__title{
-    text-align: center;
-    font-size: 30px;
+  &__title{    
     text-align: left;
+    font-size: 30px;    
     margin: 10px 0 10px 0px;
     border-bottom: 1px solid red;
   }
   &__snippet {
+    text-align: left;
     font-size: 16px;
     font-weight: 100;    
     height: 50px;
-    overflow: hidden;
-    text-align: left;        
+    overflow: hidden;            
   }
 
   &__to-order {    
+    background: rgb(157, 223, 157);
+    color: #fff;  
     border: 0;
-    border-radius: 10px;
-    outline: none;
+    border-radius: 10px;    
     padding: 10px;
+    margin-top: 10px;
     width: 150px;
     height: 50px;
-    font-size: 25px;
-    background: rgb(157, 223, 157);
-    color: #fff;
-    margin-top: 10px;
+    font-size: 25px;  
+    outline: none;
     cursor: pointer;    
 
     &:hover {      
@@ -219,10 +217,10 @@ $generalColor: #122538;
   }
 }
 
-.view-phone {  
-  width: 100%;
+.view-phone { 
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; 
+  width: 100%;
 
   &__side-images {    
     height: 100%;
@@ -276,14 +274,14 @@ $generalColor: #122538;
   }
   &__to-order {
     margin-top: 15%;
+    padding-top: 8px;  
     width: 200px;
     height: 50px;
     border-radius: 10px;
     border: 0;
     background: rgb(157, 223, 157);
     box-sizing: border-box;
-    text-align: center;    
-    padding-top: 8px;    
+    text-align: center;          
     font-size: 28px;
     font-family: sans-serif;
     font-weight: 100;
@@ -325,6 +323,8 @@ $generalColor: #122538;
   }
 
   &__cart {
+    width: 60%;
+    height: 90%;
     background: #fff;
     box-shadow: 0px 0px 15px $generalColor;
     border-radius: 5px;
@@ -332,18 +332,16 @@ $generalColor: #122538;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);    
-    width: 60%;
-    height: 90%;
     overflow: auto;
     z-index: 2;    
     animation: show .5s ease;
   }
   &__title {
     box-sizing: border-box;
+    border-bottom:1px solid silver;
     font-family: sans-serif;
     font-size: 50px;
-    font-weight: 100;    
-    border-bottom:1px solid silver;
+    font-weight: 100;        
     color: $generalColor;  
     padding-left: 25px;      
     padding: 20px;
@@ -352,15 +350,15 @@ $generalColor: #122538;
     width: 7%;
   }
   &__remove-item-icons {
-    width: 60%;    
-    float: right;
+    width: 60%;        
     margin-left: 10vh;
+    float: right;
     cursor: pointer;
   }
   &__item {
-    border-bottom: 1px solid silver;
-    height: 10vh;
     display: flex;
+    border-bottom: 1px solid silver;
+    height: 10vh;    
     padding: 5px;    
     margin-bottom: 15px;    
   }
@@ -373,11 +371,11 @@ $generalColor: #122538;
     width: 100%;
   }
   &__item-title {    
+    display: flex;
+    align-items: flex-end; 
     font-family: sans-serif;
     font-size: 20px;
-    font-weight: 100;
-    display: flex;
-    align-items: flex-end;    
+    font-weight: 100;   
     margin-left: 3%;
     padding-left: 1%;
     border-left: 1px solid silver;;
@@ -385,13 +383,13 @@ $generalColor: #122538;
     cursor: pointer;
   }
   &__quantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 1px solid silver;
     border-radius: 10px;
     height: 50px;
     width: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-family: sans-serif;
     font-size: 22px;
     color: gray;
@@ -409,5 +407,23 @@ $generalColor: #122538;
   }
   100% {
     top: 50%;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .header {
+
+    &__input {      
+      width: 130px;
+      margin-left: 0;
+    }
+  }
+  .side-bar {   
+    position: absolute;
+    width: 85%;
+  }
+  .side-bar--hide {
+    width: 0%;
   }
 }
