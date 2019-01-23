@@ -134,16 +134,12 @@
   box-shadow: 0px 0px 5px silver;
   border-radius: 10px;
   width: 300px;
-  min-height: 420px;
   margin: 5% 1% 0 1%;
   padding: 20px;
   cursor: pointer;
   transition: .3s; }
   .product:hover {
     box-shadow: 0px 0px 15px #122538; }
-  .product:hover .product__snippet {
-    height: 100%;
-    overflow: visible; }
   .product__photo {
     border-radius: 20px;
     height: 300px;
@@ -153,8 +149,9 @@
     height: 100%; }
   .product__title {
     text-align: left;
-    font-size: 30px;
+    font-size: 23px;
     margin: 10px 0 10px 0px;
+    height: 50px;
     border-bottom: 1px solid red; }
   .product__snippet {
     text-align: left;

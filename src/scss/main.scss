@@ -154,14 +154,13 @@ $generalColor: #122538;
   text-align: center;
 }
 
-.product {
+.product {  
   display: inline-block;
   background: #f5f5f5;
   color: $generalColor;  
   box-shadow: 0px 0px 5px silver;  
   border-radius: 10px;
   width: 300px;
-  min-height: 420px;
   margin: 5% 1% 0 1%;  
   padding: 20px;  
   cursor: pointer;
@@ -170,12 +169,8 @@ $generalColor: #122538;
   &:hover {
     box-shadow: 0px 0px 15px $generalColor;  
   }
-  &:hover &__snippet {
-    height: 100%;
-    overflow: visible;    
-  }
 
-  &__photo {
+  &__photo {    
     border-radius: 20px;    
     height: 300px;
     overflow: hidden;
@@ -186,8 +181,9 @@ $generalColor: #122538;
   }
   &__title{    
     text-align: left;
-    font-size: 30px;    
+    font-size: 23px;    
     margin: 10px 0 10px 0px;
+    height: 50px;
     border-bottom: 1px solid red;
   }
   &__snippet {
