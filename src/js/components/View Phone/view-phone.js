@@ -9,7 +9,7 @@ export default class ViewPhone {
     this.addEvents();
   }
   render() {
-    window.pageYOffset = 0;
+    window.scrollTo(0,0)
     this.element.classList.remove('hide'); 
 
     this.sideBar.classList.add('side-bar--hide')   
