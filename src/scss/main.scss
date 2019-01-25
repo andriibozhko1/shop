@@ -214,10 +214,12 @@ $generalColor: #122538;
 }
 
 .view-phone { 
-  display: flex;
-  justify-content: space-between; 
   width: 100%;
 
+  &__content {
+    display: flex;
+    justify-content: space-between; 
+  }
   &__side-images {    
     height: 100%;
     width: 8%;
@@ -288,10 +290,33 @@ $generalColor: #122538;
       background: rgb(101, 199, 101);
     }
   }
+
+  &__specifications {
+    padding: 0;
+    margin: 5% 0 0 0;
+    font-family: sans-serif;
+  }
+  &__specifications-item {
+    border-bottom: 1px solid silver;
+    list-style: none;
+    width: 40%;
+    padding: 10px;    
+    margin: auto;
+  }
+  &__specifications-item-title {
+    font-size: 30px;
+    color: $generalColor;    
+  }
+  &__specifications-type {
+    font-weight: bold;
+    color: $generalColor;
+  }
 }
+
 .hide {
   display: none;
 }
+
 .btn-to-back {
   box-sizing: border-box;
   border-radius: 10px;
@@ -307,6 +332,7 @@ $generalColor: #122538;
   text-align: center;
   cursor: pointer;
 }
+
 .cart-menu {
 
   &__overflow {

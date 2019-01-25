@@ -14,6 +14,7 @@ const sassBlob = 'src/scss/**';
 const jsBlob = 'src/js/**';
 const normalizeBlob = 'src/normalize/**';
 const components = 'src/js/components/**';
+const api = 'src/api/**';
 
 gulp.task('default', function () {
   return runSequence('build', 'serve');
@@ -22,7 +23,7 @@ gulp.task('default', function () {
 gulp.task('build', function () {
   return runSequence(
     'cleanDist',
-    ['processStyles', 'processHtml', 'processImages','sass','js','normalize']
+    ['processStyles', 'processHtml', 'processImages','sass','js','normalize','components','api']
   );
 });
 
@@ -101,4 +102,8 @@ gulp.task('normalize', function() {
 gulp.task('components', function() {
   return gulp.src(components)
   .pipe(gulp.dest(`${distDirectory}/js/`));
+});
+gulp.task('api', function() {
+  return gulp.src(api)
+  .pipe(gulp.dest(`${distDirectory}/api`));
 });

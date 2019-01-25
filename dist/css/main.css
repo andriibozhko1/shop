@@ -175,9 +175,10 @@
       background: #65c765; }
 
 .view-phone {
-  display: flex;
-  justify-content: space-between;
   width: 100%; }
+  .view-phone__content {
+    display: flex;
+    justify-content: space-between; }
   .view-phone__side-images {
     height: 100%;
     width: 8%;
@@ -235,6 +236,22 @@
     cursor: pointer; }
     .view-phone__to-order:hover {
       background: #65c765; }
+  .view-phone__specifications {
+    padding: 0;
+    margin: 5% 0 0 0;
+    font-family: sans-serif; }
+  .view-phone__specifications-item {
+    border-bottom: 1px solid silver;
+    list-style: none;
+    width: 40%;
+    padding: 10px;
+    margin: auto; }
+  .view-phone__specifications-item-title {
+    font-size: 30px;
+    color: #122538; }
+  .view-phone__specifications-type {
+    font-weight: bold;
+    color: #122538; }
 
 .hide {
   display: none; }

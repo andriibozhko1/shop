@@ -9,7 +9,6 @@ export default class ViewPhone {
     this.addEvents();
   }
   render() {
-    window.pageYOffset = 0;
     this.element.classList.remove('hide'); 
 
     this.sideBar.classList.add('side-bar--hide')   
@@ -147,6 +146,7 @@ export default class ViewPhone {
           </li>
         </ul>    
     `;
+    window.pageYOffset = 0;
   }
   addEvents() {
     let mainImg = this.element.querySelector('.view-phone__main-img');

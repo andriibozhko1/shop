@@ -1,11 +1,10 @@
 import ViewPhone from "../View Phone/view-phone.js";
+import ServerRequest from "../../server-request/server-request.js";
 
 export default class PhonesList {
   constructor({ element, phones }) {
     this.element = element;
     this.phonesList = phones;
-    this.selectedPhones;
-    this.cartProduct = [];
 
     this.render();
     this.addEvents();
@@ -33,22 +32,17 @@ export default class PhonesList {
       .join("");
     this.element.innerHTML = phones;
   }
-  addEvents() {
-    let productId;
+  addEvents() {        
     this.element.addEventListener("click", e => {
-      if (e.target.closest(".product") && !e.target.dataset.toOrderId) {
-        productId = e.target.closest(".product").dataset.productId;
+      if (e.target.closest(".product") && !e.target.dataset.toOrderId) {        
+        let productId = e.target.closest(".product").dataset.productId;
 
-        this.phonesList.find(phone => {
-          if (phone.id === productId) {
-            this.element.classList.add("hide");
-
-            new ViewPhone({
-              element: document.querySelector(".view-phone"),
-              phone: phone,
-              phoneList: this.element
-            });
-          }
+        let findPhoneById = new ServerRequest();
+        this.element.classList.add("hide");
+        new ViewPhone({
+          element: document.querySelector(".view-phone"),
+          phone: findPhoneById.findById(productId),
+          phoneList: this.element
         });
       }
     });

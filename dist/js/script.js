@@ -7,7 +7,10 @@ import phones from "./services/phones.js";
 import FilterField from "./components/Header/filter-field.js";
 import Cart from "./components/Cart/cart.js";
 import ModalWindow from "./components/Modal Window/modal-window.js";
+import ServerRequest from "./server-request/server-request.js";
 
+
+let getAllPhones = new ServerRequest();
 let header = new Header({
   element: document.querySelector(".header")
 });
@@ -32,12 +35,12 @@ let dropDown = new DropDown({
 
 let phonesList = new PhonesList({
   element: document.querySelector(".phones"),
-  phones: phones
+  phones: getAllPhones.getAllPhones(),
 });
 
 let filterField = new FilterField({
   element: document.querySelector(".header__search-field"),
-  phones: phones
+  phones: getAllPhones.getAllPhones(),
 });
 
 let modalWindow = new ModalWindow({
@@ -46,5 +49,5 @@ let modalWindow = new ModalWindow({
 });
 let cart = new Cart({
   element: document.querySelector(".cart-menu__list"),
-  phonesList: phones
+  phonesList: getAllPhones.getAllPhones(),
 });

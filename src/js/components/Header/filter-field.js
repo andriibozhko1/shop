@@ -29,11 +29,12 @@ export default class FilterField {
       getFieldValue(field.value);
     });
   }
+
   filter(value) {
     let filteredArr = [];
 
-    this.phones.map(e => {
-      if (e.name.toLowerCase().includes(value.toLowerCase())) {
+    this.phones.map(e => {      
+      if (e.name.toLowerCase().includes(value.toLowerCase())) {        
         filteredArr.push(e);
       }
     });
