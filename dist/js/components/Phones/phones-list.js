@@ -38,12 +38,15 @@ export default class PhonesList {
         let productId = e.target.closest(".product").dataset.productId;
 
         let findPhoneById = new ServerRequest();
-        this.element.classList.add("hide");
-        new ViewPhone({
-          element: document.querySelector(".view-phone"),
-          phone: findPhoneById.findById(productId),
-          phoneList: this.element
-        });
+        findPhoneById.findById(productId, (phone) => {
+          this.element.classList.add("hide");
+
+          new ViewPhone({
+            element: document.querySelector(".view-phone"),
+            phone: phone,
+            phoneList: this.element
+          });
+        })
       }
     });
   }

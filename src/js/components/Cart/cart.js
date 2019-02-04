@@ -3,17 +3,15 @@ export default class Cart {
     this.element = element;
     this.phonesList = phonesList;
     this.phones = [];    
-
-    this.phonesList.map(e => e.quantity = 1);
-
+    this.phonesList.map(phone => phone.quantity = 1);
     this.addEvents();    
   }
   render() {    
-    this.phones = this.phones.filter((a,b) => {
-      if(this.phones.indexOf(a) == b) {
+    this.phones = this.phones.filter((phones,index) => {
+      if(this.phones.indexOf(phones) == index) {
         return true;
       } else {
-        a.quantity++;
+        phones.quantity++;
       }
     });
       
@@ -40,10 +38,10 @@ export default class Cart {
   }
 
   addEvents() {
-    document.body.addEventListener('click', (e) => {
-      if(e.target.dataset.toOrderId) {        
-        this.phonesList.map((phone) => {
-          if(phone.id === e.target.dataset.toOrderId) {
+    document.body.addEventListener('click', (event) => {
+      if(event.target.dataset.toOrderId) {        
+        this.phonesList.filter((phone) => {
+          if(phone.id === event.target.dataset.toOrderId) {
             this.phones.push(phone);
           }
         })
@@ -52,17 +50,13 @@ export default class Cart {
       }
     })
     
-    this.element.addEventListener('click', (e) => {
-      if(e.target.closest('.cart-menu__remove-item')) {
-        let item = e.target.closest('.cart-menu__item');
+    this.element.addEventListener('click', (event) => {
+      if(event.target.closest('.cart-menu__remove-item')) {
+        let item = event.target.closest('.cart-menu__item');
 
         this.phones.map((phone) => {
           if(phone.id === item.dataset.productId) {
-            if(phone.quantity > 1) {
-              phone.quantity--;                      
-            } else {                            
-              this.phones.splice(this.phones.indexOf(phone),1);                            
-            }            
+            phone.quantity > 1 ? phone.quantity-- : this.phones.splice(this.phones.indexOf(phone), 1)           
             this.render();
           }
         })
