@@ -9,33 +9,47 @@ export default class PhonesList {
     this.render();
     this.addEvents();
   }
-  render() {
-    let phones = this.phonesList
-      .map(e => {
+  render(id = 0) {
+    let phones = [... this.phonesList];  
+    let paginationList = [];
+    phones.forEach(() => {
+      paginationList.push(phones.splice(0,6));
+    })
+    paginationList.push(phones);
+    paginationList = paginationList.filter(arr => arr.length !== 0);
+
+    this.element.innerHTML = `
+      ${paginationList[id].map(phone => {
         return `
-          <div class="product" data-product-id="${e.id}">
+          <div class="product" data-product-id="${phone.id}">
             <div class="product__photo">
-                <img src="${e.imageUrl}" alt="${e.id}" class="product__img">
+                <img src="${phone.imageUrl}" alt="${phone.id}" class="product__img">
             </div>
             <div class="product__title">
-              ${e.name}
+              ${phone.name}
             </div>
             <div class="product__snippet">
-                  ${e.snippet}
+                  ${phone.snippet}
             </div>
             <button class="product__to-order" data-to-order-id="${
-              e.id
+              phone.id
             }">Buy</button>
-          </div>      
+          </div>
       `;
-      })
-      .join("");
-    this.element.innerHTML = phones;
+      }).join('')}
+      <div class="phones-navigation">
+          ${paginationList.map((paginationTab,index) => {
+            return `
+            <div class="phones-navigation__page" data-pagination-page-id="${index}">${index + 1}</div>
+            `
+          }).join('')}
+      </div>
+    `
   }
   addEvents() {        
-    this.element.addEventListener("click", e => {
-      if (e.target.closest(".product") && !e.target.dataset.toOrderId) {        
-        let productId = e.target.closest(".product").dataset.productId;
+    this.element.addEventListener("click", (phone) => {
+      if (phone.target.closest(".product") && !phone.target.dataset.toOrderId) {        
+        let productId = phone.target.closest(".product").dataset.productId;
 
         let findPhoneById = new ServerRequest();
         findPhoneById.findById(productId, (phone) => {
@@ -47,6 +61,10 @@ export default class PhonesList {
             phoneList: this.element
           });
         })
+      }
+      if(phone.target.closest('.phones-navigation__page')) {
+        this.render(phone.target.dataset.paginationPageId);
+        window.scrollTo(0,0)
       }
     });
   }

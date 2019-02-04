@@ -24,7 +24,7 @@ export default class ModalWindow {
       this.element.classList.remove('hide');
     })
     this.element.addEventListener('click', (e) => {
-      if(e.target.classList.contains('cart-menu__overflow')) {
+      if(e.target.closest('.cart-menu__overflow')) {
         this.element.classList.add('hide');
       }
     })

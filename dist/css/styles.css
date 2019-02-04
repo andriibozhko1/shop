@@ -469,7 +469,35 @@ $generalColor: #122538;
     right: 10%;
   }
 }
+.phones-navigation {
+  display: block;
+  height: 70px;
+  width: 50%;
+  margin: 2% auto;
 
+  &__page {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    background: rgb(157, 223, 157);
+    color: #fff;
+    text-shadow: 0px 0px 10px silver;
+    height: 50px;
+    width: 50px;
+    margin-top: 1%;
+    font-family: sans-serif;
+    font-size: 26px;
+    padding-top: 10px;
+    cursor: pointer;
+    -webkit-transition: .3s;
+    transition: .3s;
+
+    &:hover {
+      -webkit-box-shadow: 0px 0px 5px rgb(157, 223, 157);
+              box-shadow: 0px 0px 5px rgb(157, 223, 157);
+    }
+  }
+}
 @-webkit-keyframes show {
   0% {
     top: 150%;      
@@ -480,7 +508,6 @@ $generalColor: #122538;
     top: 50%;
   }
 }
-
 @keyframes show {
   0% {
     top: 150%;      

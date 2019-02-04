@@ -36,7 +36,7 @@ export default class FilterField {
     let filteredArr = [];
     this.phones.filter(phone => {      
       if (phone.name.toLowerCase().includes(value.toLowerCase())) {        
-        filteredArr.push(e);
+        filteredArr.push(phone);
       }
     });
     

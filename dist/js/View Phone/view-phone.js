@@ -13,18 +13,18 @@ export default class ViewPhone {
     this.element.classList.remove('hide'); 
 
     this.sideBar.classList.add('side-bar--hide')   
-    let img = this.phone.images.map(img => {      
+    let imgBlocks = this.phone.images.map(img => {      
       return `
       <div class="view-photo__side-item" data-img-src="./${img}">
          <img class="view-phone__side-img" src="./${img}" alt="${img}">
       </div>
       `
     });
-    
+
     this.element.innerHTML = `        
         <div class="view-phone__content">
           <div class="view-phone__side-images">
-            ${img.join('')}
+            ${imgBlocks.join('')}
           </div>
           <div class="view-phone__main-img-block">
               <img class="view-phone__main-img" src="./${this.phone.images[0]}" alt="${this.phone.id}">

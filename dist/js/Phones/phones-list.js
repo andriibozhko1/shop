@@ -40,7 +40,7 @@ export default class PhonesList {
         let findPhoneById = new ServerRequest();
         findPhoneById.findById(productId, (phone) => {
           this.element.classList.add("hide");
-          console.log('END');
+
           new ViewPhone({
             element: document.querySelector(".view-phone"),
             phone: phone,

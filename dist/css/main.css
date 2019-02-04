@@ -359,6 +359,28 @@
   position: absolute;
   right: 10%; }
 
+.phones-navigation {
+  display: block;
+  height: 70px;
+  width: 50%;
+  margin: 2% auto; }
+  .phones-navigation__page {
+    display: inline-block;
+    box-sizing: border-box;
+    background: #9ddf9d;
+    color: #fff;
+    text-shadow: 0px 0px 10px silver;
+    height: 50px;
+    width: 50px;
+    margin-top: 1%;
+    font-family: sans-serif;
+    font-size: 26px;
+    padding-top: 10px;
+    cursor: pointer;
+    transition: .3s; }
+    .phones-navigation__page:hover {
+      box-shadow: 0px 0px 5px #9ddf9d; }
+
 @keyframes show {
   0% {
     top: 150%;
