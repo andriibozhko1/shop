@@ -3,7 +3,7 @@ export default class Cart {
     this.element = element;
     this.phonesList = phonesList;
     this.phones = [];    
-
+    
     this.phonesList.map(e => e.quantity = 1);
 
     this.addEvents();    

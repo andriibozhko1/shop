@@ -19,22 +19,23 @@ export default class FilterField {
     `;
   }
   addEvents() {
-    let field = document.querySelector(".header__input");
+    let fields = [... this.element.querySelectorAll(".header__input")];
     let getFieldValue = (value) => {
       this.filter(value);
     };
 
     getFieldValue = debounce(getFieldValue, 500);
-    field.addEventListener("keyup", e => {
-      getFieldValue(field.value);
-    });
+    fields.map(field => {
+      field.addEventListener("keyup", e => {
+        getFieldValue(field.value);
+      });
+    })
   }
 
   filter(value) {
     let filteredArr = [];
-
-    this.phones.map(e => {      
-      if (e.name.toLowerCase().includes(value.toLowerCase())) {        
+    this.phones.filter(phone => {      
+      if (phone.name.toLowerCase().includes(value.toLowerCase())) {        
         filteredArr.push(e);
       }
     });

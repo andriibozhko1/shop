@@ -11,7 +11,7 @@ export default class ServerRequest {
 
     this.xhr.onload = () => {
       let allPhones = JSON.parse(this.xhr.responseText);
-      callBack(allPhones)
+      callBack(allPhones);
     }
   }
   findById(id,callBack) {
