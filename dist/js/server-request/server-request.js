@@ -5,16 +5,21 @@ export default class ServerRequest {
     this.getAllPhones;
     this.findById;
   }
-  getAllPhones() {
-    this.xhr.open('GET', './api/phones.json', false);
-    this.xhr.send();
-
-    return JSON.parse(this.xhr.responseText);
+  getAllPhones(callBack) {
+    let url = `./api/phones.json`;
+    this.sendRequest(url, callBack);
   }
-  findById(id) {
-    this.xhr.open('GET', `./api/phones/${id}.json`, false);
-    this.xhr.send();
+  findById(id,callBack) {
+    let url = `./api/phones/${id}.json`;
+    this.sendRequest(url, callBack);
+  }
+  sendRequest(url, callBack) {
+    this.xhr.open('GET', url, true);
+    this.xhr.send(); 
 
-    return JSON.parse(this.xhr.responseText);    
+    this.xhr.onload = () => {
+      let allPhones = JSON.parse(this.xhr.responseText);
+      callBack(allPhones);
+    }
   }
 }

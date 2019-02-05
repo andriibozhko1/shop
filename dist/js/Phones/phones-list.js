@@ -17,7 +17,7 @@ export default class PhonesList {
     })
     paginationList.push(phones);
     paginationList = paginationList.filter(arr => arr.length !== 0);
-    
+
     this.element.innerHTML = `
       ${paginationList[id].map(phone => {
         return `
