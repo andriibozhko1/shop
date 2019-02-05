@@ -6,21 +6,20 @@ export default class ServerRequest {
     this.findById;
   }
   getAllPhones(callBack) {
-    this.xhr.open('GET', './api/phones.json', true);
+    let url = `./api/phones.json`;
+    this.sendRequest(url, callBack);
+  }
+  findById(id,callBack) {
+    let url = `./api/phones/${id}.json`;
+    this.sendRequest(url, callBack);
+  }
+  sendRequest(url, callBack) {
+    this.xhr.open('GET', url, true);
     this.xhr.send(); 
 
     this.xhr.onload = () => {
       let allPhones = JSON.parse(this.xhr.responseText);
       callBack(allPhones);
-    }
-  }
-  findById(id,callBack) {
-    this.xhr.open('GET', `./api/phones/${id}.json`, true);
-    this.xhr.send();
-
-    this.xhr.onload = () => {
-      let currentPhone = JSON.parse(this.xhr.responseText);
-      callBack(currentPhone)
     }
   }
 }
