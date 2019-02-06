@@ -1,4 +1,3 @@
-import PhonesList from "../Phones/phones-list.js";
 import debounce from "../../utils/debounce.js";
 
 export default class FilterField {
@@ -10,6 +9,7 @@ export default class FilterField {
     this.render();
     this.addEvents();
   }
+
   render() {
     this.element.innerHTML = `
         <label class="search-icon">
@@ -18,31 +18,23 @@ export default class FilterField {
         </label>
     `;
   }
+
   addEvents() {
     let fields = [... this.element.querySelectorAll(".header__input")];
+
     let getFieldValue = (value) => {
-      this.filter(value);
+      let filterEvent = new CustomEvent('filter-phones', {
+        detail: value,
+      })
+      this.element.dispatchEvent(filterEvent);
     };
 
     getFieldValue = debounce(getFieldValue, 500);
+
     fields.map(field => {
       field.addEventListener("keyup", e => {
         getFieldValue(field.value);
       });
     })
-  }
-
-  filter(value) {
-    let filteredArr = [];
-    this.phones.filter(phone => {      
-      if (phone.name.toLowerCase().includes(value.toLowerCase())) {        
-        filteredArr.push(phone);
-      }
-    });
-    
-    new PhonesList({
-      element: document.querySelector(".phones"),
-      phones: filteredArr
-    });
   }
 }

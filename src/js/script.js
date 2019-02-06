@@ -45,7 +45,7 @@ getAllPhones.getAllPhones((phones) => {
     element: document.querySelector(".view-phone"),
     phoneList: document.querySelector('.phones'),
   });
-})
+});
 
 let header = new Header({
   element: document.querySelector(".header")

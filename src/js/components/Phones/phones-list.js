@@ -8,12 +8,15 @@ export default class PhonesList {
     this.render();
     this.addEvents();
   }
-  render(id = 0) {
-    let phones = [... this.phonesList];  
+
+  render(id = 0, phonesArr = this.phonesList) {
+    let phones = [... phonesArr];  
     let paginationList = [];
+
     phones.forEach(() => {
       paginationList.push(phones.splice(0,6));
     })
+    
     paginationList.push(phones);
     paginationList = paginationList.filter(arr => arr.length !== 0);
     
@@ -45,9 +48,15 @@ export default class PhonesList {
       </div>
     `
   }
+
   addEvents() {       
     let dropDown = document.querySelector('.drop-down');
     let detailsPhone = document.querySelector('.view-phone');
+    let filterField = document.querySelector('.header__search-field');
+
+    filterField.addEventListener('filter-phones', (data) => {
+      this.filterPhonesObj(data.detail);
+    })
 
     dropDown.addEventListener('change', (data) => {
       this.dropDownSorting(data.detail);
@@ -75,8 +84,20 @@ export default class PhonesList {
       }
     });
   }
+  
   dropDownSorting(fieldName) {
     this.phonesList = this.phonesList.sort((a,b) => a[fieldName] < b[fieldName] ? -1 : 1);
     this.render();
+  }
+
+  filterPhonesObj(value) {
+    let filteredArr = [];
+
+    this.phonesList.filter(phone => {      
+      if (phone.name.toLowerCase().includes(value.toLowerCase())) {  
+        filteredArr.push(phone);
+      }
+    });
+    this.render(0,filteredArr);
   }
 }
