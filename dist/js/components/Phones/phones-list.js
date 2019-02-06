@@ -1,4 +1,3 @@
-import ViewPhone from "../View Phone/view-phone.js";
 import ServerRequest from "../../server-request/server-request.js";
 
 export default class PhonesList {
@@ -9,42 +8,96 @@ export default class PhonesList {
     this.render();
     this.addEvents();
   }
-  render() {
-    let phones = this.phonesList
-      .map(e => {
+
+  render(id = 0, phonesArr = this.phonesList) {
+    let phones = [... phonesArr];  
+    let paginationList = [];
+
+    phones.forEach(() => {
+      paginationList.push(phones.splice(0,6));
+    })
+    
+    paginationList.push(phones);
+    paginationList = paginationList.filter(arr => arr.length !== 0);
+    
+    this.element.innerHTML = `
+      ${paginationList[id].map(phone => {
         return `
-          <div class="product" data-product-id="${e.id}">
+          <div class="product" data-product-id="${phone.id}">
             <div class="product__photo">
-                <img src="${e.imageUrl}" alt="${e.id}" class="product__img">
+                <img src="${phone.imageUrl}" alt="${phone.id}" class="product__img">
             </div>
             <div class="product__title">
-              ${e.name}
+              ${phone.name}
             </div>
             <div class="product__snippet">
-                  ${e.snippet}
+                  ${phone.snippet}
             </div>
             <button class="product__to-order" data-to-order-id="${
-              e.id
+              phone.id
             }">Buy</button>
-          </div>      
+          </div>
       `;
-      })
-      .join("");
-    this.element.innerHTML = phones;
+      }).join('')}
+      <div class="phones-navigation">
+          ${paginationList.map((paginationTab,index) => {
+            return `
+            <div class="phones-navigation__page" data-pagination-page-id="${index}">${index + 1}</div>
+            `
+          }).join('')}
+      </div>
+    `
   }
-  addEvents() {        
-    this.element.addEventListener("click", e => {
-      if (e.target.closest(".product") && !e.target.dataset.toOrderId) {        
-        let productId = e.target.closest(".product").dataset.productId;
+
+  addEvents() {       
+    let dropDown = document.querySelector('.drop-down');
+    let detailsPhone = document.querySelector('.view-phone');
+    let filterField = document.querySelector('.header__search-field');
+
+    filterField.addEventListener('filter-phones', (data) => {
+      this.filterPhonesObj(data.detail);
+    })
+
+    dropDown.addEventListener('change', (data) => {
+      this.dropDownSorting(data.detail);
+    })
+
+    this.element.addEventListener("click", (phone) => {
+      if (phone.target.closest(".product") && !phone.target.dataset.toOrderId) {        
+        let productId = phone.target.closest(".product").dataset.productId;
 
         let findPhoneById = new ServerRequest();
-        this.element.classList.add("hide");
-        new ViewPhone({
-          element: document.querySelector(".view-phone"),
-          phone: findPhoneById.findById(productId),
-          phoneList: this.element
-        });
+          findPhoneById.findById(productId, (phone) => {
+            this.element.classList.add("hide");
+
+            let showPhoneEvent = new CustomEvent('show-phone', {
+              detail: phone,
+            })
+
+            detailsPhone.dispatchEvent(showPhoneEvent);
+          })
+      }
+      
+      if(phone.target.closest('.phones-navigation__page')) {
+        this.render(phone.target.dataset.paginationPageId);
+        window.scrollTo(0,0)
       }
     });
+  }
+  
+  dropDownSorting(fieldName) {
+    this.phonesList = this.phonesList.sort((a,b) => a[fieldName] < b[fieldName] ? -1 : 1);
+    this.render();
+  }
+
+  filterPhonesObj(value) {
+    let filteredArr = [];
+
+    this.phonesList.filter(phone => {      
+      if (phone.name.toLowerCase().includes(value.toLowerCase())) {  
+        filteredArr.push(phone);
+      }
+    });
+    this.render(0,filteredArr);
   }
 }
