@@ -67,7 +67,9 @@ export default class PhonesList {
         let productId = phone.target.closest(".product").dataset.productId;
 
         let findPhoneById = new ServerRequest();
-          findPhoneById.findById(productId, (phone) => {
+          let promise = findPhoneById.findById(productId);
+
+            promise.then((phone) => {
             this.element.classList.add("hide");
 
             let showPhoneEvent = new CustomEvent('show-phone', {

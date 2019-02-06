@@ -19,17 +19,17 @@ export default class DropDown {
       `;
   }
   addEvents() {
-    this.element.addEventListener('mousedown',(e) => {
-      e.preventDefault();
+    this.element.addEventListener('mousedown',(event) => {
+      event.preventDefault();
     })
 
-    this.element.addEventListener('click', (e) => {      
-      if(e.target.closest('.drop-down__title')) {
+    this.element.addEventListener('click', (event) => {      
+      if(event.target.closest('.drop-down__title')) {
         this.element.classList.toggle('hide-sort');
       }
-      if(e.target.dataset.sortBy) {     
-        let nameOfSort = e.target.dataset.sortBy;
-        this.titleName = e.target.textContent;
+      if(event.target.dataset.sortBy) {     
+        let nameOfSort = event.target.dataset.sortBy;
+        this.titleName = event.target.textContent;
 
         let changeEvent = new CustomEvent('change', {
           detail: nameOfSort,
@@ -40,8 +40,8 @@ export default class DropDown {
       }            
     })
 
-    document.body.addEventListener('click', (e) => {
-      if(!e.target.closest('.drop-down__title')) {
+    document.body.addEventListener('click', (event) => {
+      if(!event.target.closest('.drop-down__title')) {
         this.element.classList.add('hide-sort');
       }
     });
