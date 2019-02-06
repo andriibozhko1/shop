@@ -1,28 +1,29 @@
 export default class ServerRequest {
   constructor() {
-    this.xhr = new XMLHttpRequest();
-
     this.getAllPhones;
     this.findById;
   }
 
-  getAllPhones(callBack) {
+  getAllPhones() {
     let url = `./api/phones.json`;
-    this.sendRequest(url, callBack);
+    return this.sendRequest(url);
   }
 
-  findById(id, callBack) {
+  findById(id) {
     let url = `./api/phones/${id}.json`;
-    this.sendRequest(url, callBack);
+    return this.sendRequest(url);
   }
   
-  sendRequest(url, callBack) {
-    this.xhr.open("GET", url, true);
-    this.xhr.send();
-
-    this.xhr.onload = () => {
-      let allPhones = JSON.parse(this.xhr.responseText);
-      callBack(allPhones);
-    };
+  sendRequest(url) {
+    return new Promise((resolve, reject) => {
+      let promise = fetch(url).then((response) => {
+        if(response.status !== 200) {
+          reject(`${response.status} ${response.statusText}`)
+        }
+        return response.json();
+      }).then((phones) => {
+        resolve(phones);
+      })
+    })
   }
 }
