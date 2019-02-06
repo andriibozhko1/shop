@@ -5,7 +5,8 @@ export default class DropDown {
     this.element = element;
     this.typesOfSorting = typesOfSorting;
     this.phones = phones;
-    
+    this.titleName = 'Newest';
+
     this.render();
     this.addEvents();
   }
@@ -13,10 +14,10 @@ export default class DropDown {
   render() {
     this.element.innerHTML = `    
         <div class="drop-down__title" data-dropdown-show="hide">
-          <span>Sort By:</span><img class="down-arrow-icon" src="img/icons/down-arrow.svg">
+          <span>Sort By: ${this.titleName}</span>
         </div>
         <div class="drop-down__items">
-          ${this.typesOfSorting.map(e=> `<div class="drop-down__item" data-filter-by="${e.type}">${e.value}</div>`).join('')}
+          ${this.typesOfSorting.map(e=> `<div class="drop-down__item" data-sort-by="${e.type}">${e.value}</div>`).join('')}
         </div>
       `;
   }
@@ -28,8 +29,11 @@ export default class DropDown {
       if(e.target.closest('.drop-down__title')) {
         this.element.classList.toggle('hide-sort');
       }
-      if(e.target.dataset.filterBy) {           
-        this.sorting(e.target.dataset.filterBy);
+      if(e.target.dataset.sortBy) {     
+        let nameOfSort = e.target.dataset.sortBy;
+        this.titleName =e.target.textContent;
+        this.render();
+        this.sorting(nameOfSort);
       }            
     })
     document.body.addEventListener('click', (e) => {
