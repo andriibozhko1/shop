@@ -12,6 +12,7 @@ export default class Cart {
     });   
 
     this.addEvents();
+    this.render();
   }
 
   render() {
