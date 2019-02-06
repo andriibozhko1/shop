@@ -269,7 +269,7 @@
   text-align: center;
   cursor: pointer; }
 
-.cart-menu__overflow {
+.modal-window__overflow {
   background: #000;
   position: fixed;
   height: 100%;
@@ -277,7 +277,7 @@
   z-index: 1;
   opacity: .6; }
 
-.cart-menu__cart {
+.modal-window__content {
   width: 60%;
   height: 90%;
   background: #fff;

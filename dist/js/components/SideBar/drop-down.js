@@ -14,13 +14,11 @@ export default class DropDown {
           <span>Sort By: ${this.titleName}</span>
         </div>
         <div class="drop-down__items">
-          ${this.typesOfSorting.map(e=> `<div class="drop-down__item" data-sort-by="${e.type}">${e.value}</div>`).join('')}
+          ${this.typesOfSorting.map(typeOfSorting => `<div class="drop-down__item" data-sort-by="${typeOfSorting.type}">${typeOfSorting.value}</div>`).join('')}
         </div>
       `;
   }
   addEvents() {
-    let dropDown = document.querySelector('.drop-down');
-
     this.element.addEventListener('mousedown',(e) => {
       e.preventDefault();
     })
@@ -31,7 +29,8 @@ export default class DropDown {
       }
       if(e.target.dataset.sortBy) {     
         let nameOfSort = e.target.dataset.sortBy;
-        this.titleName =e.target.textContent;
+        this.titleName = e.target.textContent;
+
         let changeEvent = new CustomEvent('change', {
           detail: nameOfSort,
         })

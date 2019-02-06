@@ -1,16 +1,14 @@
 export default class ViewPhone {
   constructor({element, phone, phoneList}) {
-    this.phone = phone;
     this.element = element;
     this.phoneListPage = phoneList;
     this.sideBar = document.querySelector('.side-bar')
-
-    this.render();
+    
     this.addEvents();
   }
   render() {
+    this.element.classList.remove('hide');
     window.scrollTo(0,0)
-    this.element.classList.remove('hide'); 
 
     this.sideBar.classList.add('side-bar--hide')   
     let imgBlocks = this.phone.images.map(img => {      
@@ -150,6 +148,11 @@ export default class ViewPhone {
   }
   addEvents() {
     let mainImg = this.element.querySelector('.view-phone__main-img');
+
+    this.element.addEventListener('show-phone', (data) => {
+      this.phone = data.detail;
+      this.render();
+    })
 
     this.element.addEventListener('click', (e) => {
       if(e.target.closest('.btn-to-back')) {

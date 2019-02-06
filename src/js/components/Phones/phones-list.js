@@ -1,4 +1,3 @@
-import ViewPhone from "../View Phone/view-phone.js";
 import ServerRequest from "../../server-request/server-request.js";
 
 export default class PhonesList {
@@ -48,7 +47,8 @@ export default class PhonesList {
   }
   addEvents() {       
     let dropDown = document.querySelector('.drop-down');
-    
+    let detailsPhone = document.querySelector('.view-phone');
+
     dropDown.addEventListener('change', (data) => {
       this.dropDownSorting(data.detail);
     })
@@ -61,11 +61,11 @@ export default class PhonesList {
           findPhoneById.findById(productId, (phone) => {
             this.element.classList.add("hide");
 
-            new ViewPhone({
-              element: document.querySelector(".view-phone"),
-              phone: phone,
-              phoneList: this.element
-            });
+            let showPhoneEvent = new CustomEvent('show-phone', {
+              detail: phone,
+            })
+
+            detailsPhone.dispatchEvent(showPhoneEvent);
           })
       }
       

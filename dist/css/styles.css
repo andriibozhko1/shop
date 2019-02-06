@@ -358,7 +358,7 @@ $generalColor: #122538;
   cursor: pointer;
 }
 
-.cart-menu {
+.modal-window {
 
   &__overflow {
     background: #000;
@@ -369,7 +369,7 @@ $generalColor: #122538;
     opacity: .6;
   }
 
-  &__cart {
+  &__content {
     width: 60%;
     height: 90%;
     background: #fff;
@@ -386,6 +386,9 @@ $generalColor: #122538;
     -webkit-animation: show .5s ease;    
             animation: show .5s ease;
   }
+}
+.cart-menu {
+  
   &__title {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;

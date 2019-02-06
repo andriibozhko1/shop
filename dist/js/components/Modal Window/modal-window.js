@@ -2,29 +2,25 @@ export default class ModalWindow {
   constructor({ element , cartBtn}) {
     this.element = element;
     this.cartBtn = cartBtn;
-
+    
     this.render();
     this.addEvents();
   }
   render() {
     this.element.innerHTML = `
-        <div class="cart-menu__overflow"></div>
-        <div class="cart-menu__cart">
-          <div class="cart-menu__title">
-              Cart
-          </div>
-          <div class="cart-menu__list">
+        <div class="modal-window__overflow"></div>
+        <div class="modal-window__content">
           
-          </div>
         </div>
     `
+    this.modalWindowContent = this.element.querySelector('.modal-window__content');
   }
   addEvents() {    
     this.cartBtn.addEventListener('click', (e) => {
       this.element.classList.remove('hide');
     })
     this.element.addEventListener('click', (e) => {
-      if(e.target.closest('.cart-menu__overflow')) {
+      if(e.target.closest('.modal-window__overflow')) {
         this.element.classList.add('hide');
       }
     })

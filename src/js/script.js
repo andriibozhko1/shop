@@ -5,8 +5,8 @@ import PhonesList from "./components/Phones/phones-list.js";
 import Header from "./components/Header/header.js";
 import FilterField from "./components/Header/filter-field.js";
 import Cart from "./components/Cart/cart.js";
-import ModalWindow from "./components/Modal Window/modal-window.js";
 import ServerRequest from "./server-request/server-request.js";
+import ViewPhone from "./components/View Phone/view-phone.js";
 
 let getAllPhones = new ServerRequest();
 
@@ -38,8 +38,12 @@ getAllPhones.getAllPhones((phones) => {
   });
 
   let cart = new Cart({
-    element: document.querySelector(".cart-menu__list"),
     phonesList: phones,
+  });
+
+  let detailPhone = new ViewPhone({
+    element: document.querySelector(".view-phone"),
+    phoneList: document.querySelector('.phones'),
   });
 })
 
@@ -48,9 +52,4 @@ let header = new Header({
 });
 let sideBar = new SideBar({
   element: document.querySelector(".side-bar")
-});
-
-let modalWindow = new ModalWindow({
-  element: document.querySelector(".cart-menu"),
-  cartBtn: document.querySelector(".header__cart-btn")
 });
