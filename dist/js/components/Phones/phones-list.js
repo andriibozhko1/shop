@@ -46,26 +46,37 @@ export default class PhonesList {
       </div>
     `
   }
-  addEvents() {        
+  addEvents() {       
+    let dropDown = document.querySelector('.drop-down');
+    
+    dropDown.addEventListener('change', (data) => {
+      this.dropDownSorting(data.detail);
+    })
+
     this.element.addEventListener("click", (phone) => {
       if (phone.target.closest(".product") && !phone.target.dataset.toOrderId) {        
         let productId = phone.target.closest(".product").dataset.productId;
 
         let findPhoneById = new ServerRequest();
-        findPhoneById.findById(productId, (phone) => {
-          this.element.classList.add("hide");
+          findPhoneById.findById(productId, (phone) => {
+            this.element.classList.add("hide");
 
-          new ViewPhone({
-            element: document.querySelector(".view-phone"),
-            phone: phone,
-            phoneList: this.element
-          });
-        })
+            new ViewPhone({
+              element: document.querySelector(".view-phone"),
+              phone: phone,
+              phoneList: this.element
+            });
+          })
       }
+      
       if(phone.target.closest('.phones-navigation__page')) {
         this.render(phone.target.dataset.paginationPageId);
         window.scrollTo(0,0)
       }
     });
+  }
+  dropDownSorting(fieldName) {
+    this.phonesList = this.phonesList.sort((a,b) => a[fieldName] < b[fieldName] ? -1 : 1);
+    this.render();
   }
 }
