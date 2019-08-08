@@ -8,9 +8,11 @@ import Cart from "./components/Cart/cart.js";
 import ServerRequest from "./server-request/server-request.js";
 import ViewPhone from "./components/View Phone/view-phone.js";
 
-let getAllPhones = new ServerRequest();
+let getPhonesPromise = new ServerRequest();
 
-getAllPhones.getAllPhones((phones) => {
+let allPhones = getPhonesPromise.getAllPhones();
+
+allPhones.then((phones) => {
 
   let dropDown = new DropDown({
     element: document.querySelector(".drop-down"),

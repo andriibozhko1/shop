@@ -16,11 +16,11 @@ export default class ModalWindow {
     this.modalWindowContent = this.element.querySelector('.modal-window__content');
   }
   addEvents() {    
-    this.cartBtn.addEventListener('click', (e) => {
+    this.cartBtn.addEventListener('click', () => {
       this.element.classList.remove('hide');
     })
-    this.element.addEventListener('click', (e) => {
-      if(e.target.closest('.modal-window__overflow')) {
+    this.element.addEventListener('click', (event) => {
+      if(event.target.closest('.modal-window__overflow')) {
         this.element.classList.add('hide');
       }
     })
